@@ -1,0 +1,81 @@
+<!-- <ul>
+    {% for todo in todos %}
+    <li>({{ todo.title }}) {{ todo.description }}</li>
+    <a href="{% url 'todo_update' todo.id %}">Update</a>
+    <a href="{% url 'todo_delete' todo.id %}">Delete</a>
+    {% empty %}
+    <li>No Data Found</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'todo_create' %}">Create Todo</a> -->
+
+
+
+
+<!-- After formatting a good looking file -->
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <title>Todo List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Heroicons CDN for icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="bg-gradient-to-tr from-blue-50 via-white to-purple-50 min-h-screen py-12">
+  <div class="max-w-4xl mx-auto px-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-12">
+      <h2 class="text-4xl font-extrabold text-indigo-900 tracking-tight drop-shadow-sm">
+        📝 Todo List
+      </h2>
+      <a href="{% url 'todo_create' %}" 
+         class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-7 rounded-xl shadow-lg transition shadow-indigo-300 hover:shadow-indigo-500">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 5v14m7-7H5"/></svg>
+        Create Todo
+      </a>
+    </div>
+
+    <!-- Todo Items List -->
+        <ul class="space-y-6">
+        {% for todo in todos %}
+        <li>
+            <a href="{% url 'todo_detail' todo.id %}" 
+            class="block bg-white rounded-2xl shadow-md p-6 flex justify-between items-center group hover:shadow-xl transition duration-300 no-underline">
+            <div class="max-w-[75%]">
+                <h3 class="text-xl font-bold text-indigo-900 truncate group-hover:text-indigo-700 transition">
+                {{ todo.title }}
+                </h3>
+                <p class="mt-1 text-gray-600 line-clamp-2 select-text">
+                {{ todo.description }}
+                </p>
+            </div>
+            <div class="flex space-x-4">
+                <a href="{% url 'todo_update' todo.id %}" 
+                class="flex items-center gap-1 px-4 py-2 border border-indigo-400 text-indigo-600 rounded-lg hover:bg-indigo-100 transition text-sm font-semibold shadow-sm"
+                onclick="event.stopPropagation();">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 stroke-indigo-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 20h9"/></svg>
+                Update
+                </a>
+                <a href="{% url 'todo_delete' todo.id %}" 
+                class="flex items-center gap-1 px-4 py-2 border border-red-500 text-red-600 rounded-lg hover:bg-red-100 transition text-sm font-semibold shadow-sm"
+                onclick="event.stopPropagation();">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 stroke-red-600" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 6h18M9 6v12M15 6v12"/></svg>
+                Delete
+                </a>
+            </div>
+            </a>
+        </li>
+        {% empty %}
+        <li class="text-center text-gray-400 italic py-12 bg-white rounded-2xl shadow-md">
+            No Todos Found
+        </li>
+        {% endfor %}
+        </ul>
+  </div>
+
+  <script>
+    feather.replace()
+  </script>
+</body>
+</html>

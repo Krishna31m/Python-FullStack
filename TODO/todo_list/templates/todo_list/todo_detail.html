@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ todo.title }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen p-10">
+  <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <h1 class="text-4xl font-bold mb-4">{{ todo.title }}</h1>
+    <p class="text-gray-700 whitespace-pre-wrap">{{ todo.description }}</p>
+    <a href="{% url 'todo_list' %}" class="mt-6 inline-block text-blue-600 hover:underline">← Back to list</a>
+  </div>
+</body>
+</html>
