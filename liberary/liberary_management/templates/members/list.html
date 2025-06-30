@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Member List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-6xl mx-auto bg-white p-6 shadow rounded-lg">
+    <h1 class="text-2xl font-bold mb-4">👤 Member List</h1>
+    <a href="{% url 'member_create' %}" class="mb-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+ Add Member</a>
+
+    <table class="table-auto w-full border mt-4">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="p-2 border">Name</th>
+          <th class="p-2 border">Email</th>
+          <th class="p-2 border">Phone</th>
+          <th class="p-2 border">Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for member in members %}
+        <tr class="hover:bg-gray-100">
+          <td class="p-2 border">{{ member.name }}</td>
+          <td class="p-2 border">{{ member.email }}</td>
+          <td class="p-2 border">{{ member.phone }}</td>
+          <td class="p-2 border">{{ member.address }}</td>
+          <td class="border p-2">
+            <a href="{% url 'member_update' member.pk %}" class="text-blue-600 hover:underline">Edit</a> |
+            <a href="{% url 'member_delete' member.pk %}" class="text-red-600 hover:underline">Delete</a>
+          </td>
+
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" class="text-center p-4">No members found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

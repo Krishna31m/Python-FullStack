@@ -1,0 +1,24 @@
+<!-- templates/loans/return.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Return Book</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+  <div class="max-w-xl mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <h2 class="text-2xl font-bold mb-4">📚 Return Book</h2>
+    <p class="mb-4">Are you sure you want to return <strong>{{ object.book }}</strong> borrowed by <strong>{{ object.member }}</strong>?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+        Confirm Return (Set Today’s Date)
+      </button>
+    </form>
+
+    <a href="{% url 'loan_list' %}" class="text-blue-500 hover:underline mt-4 inline-block">← Back to Loans</a>
+  </div>
+</body>
+</html>

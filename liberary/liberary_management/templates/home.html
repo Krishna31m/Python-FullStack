@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">📚 Library Management Dashboard</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Book Card -->
+      <div class="bg-white shadow rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold mb-2">Books</h2>
+        <p class="text-3xl font-bold text-blue-600">{{ book_count }}</p>
+        <a href="{% url 'book_list' %}" class="text-blue-500 hover:underline block mt-2">View All</a>
+      </div>
+
+      <!-- Member Card -->
+      <div class="bg-white shadow rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold mb-2">Members</h2>
+        <p class="text-3xl font-bold text-green-600">{{ member_count }}</p>
+        <a href="{% url 'member_list' %}" class="text-green-500 hover:underline block mt-2">View All</a>
+      </div>
+
+      <!-- Loan Card -->
+      <div class="bg-white shadow rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold mb-2">Loans</h2>
+        <p class="text-3xl font-bold text-yellow-600">{{ loan_count }}</p>
+        <a href="{% url 'loan_list' %}" class="text-yellow-500 hover:underline block mt-2">View All</a>
+      </div>
+
+      <!-- Fine Card -->
+        <div class="bg-white shadow rounded-lg p-6 text-center">
+        <h2 class="text-xl font-semibold mb-2">Fines</h2>
+        <p class="text-3xl font-bold text-red-600">{{ fine_count }}</p>
+        <a href="{% url 'fine_list' %}?status=unpaid" class="text-red-500 hover:underline block mt-2">View Unpaid</a>
+        </div>
+    </div>
+
+    <div class="mt-8 flex justify-center gap-6">
+      <a href="{% url 'book_create' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">➕ Add Book</a>
+      <a href="{% url 'member_create' %}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">➕ Add Member</a>
+      <a href="{% url 'loan_create' %}" class="bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700">➕ New Loan</a>
+      <a href="{% url 'fine_list' %}" class="text-red-500 hover:underline block mt-2">View All</a>
+    </div>
+    
+  </div>
+</body>
+</html>

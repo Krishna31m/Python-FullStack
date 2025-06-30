@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Records</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-7xl mx-auto bg-white p-6 shadow rounded">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">📚 Loan Records</h1>
+      <a href="{% url 'home' %}" class="text-blue-600 hover:underline">← Back to Dashboard</a>
+    </div>
+
+    <!-- Add Loan -->
+    <div class="mb-4">
+      <a href="{% url 'loan_create' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        + New Loan
+      </a>
+    </div>
+
+    <!-- Loan Table -->
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm border border-gray-300">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="border p-3 text-left">Loan ID</th>
+            <th class="border p-3 text-left">Book</th>
+            <th class="border p-3 text-left">Member</th>
+            <th class="border p-3 text-left">Loan Date</th>
+            <th class="border p-3 text-left">Due Date</th>
+            <th class="border p-3 text-left">Return Date</th>
+            <th class="border p-3 text-left">Status</th>
+            <th class="border p-3 text-left">Fine</th>
+            <th class="border p-3 text-left">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for loan in loans %}
+          <tr class="hover:bg-gray-50">
+            <td class="border p-3">#{{ loan.id }}</td>
+            <td class="border p-3">{{ loan.book }}</td>
+            <td class="border p-3">{{ loan.member }}</td>
+            <td class="border p-3">{{ loan.loan_date }}</td>
+            <td class="border p-3">{{ loan.due_date }}</td>
+            <td class="border p-3">
+              {{ loan.return_date|default:"-" }}
+            </td>
+            <td class="border p-3">
+              {% if loan.status == 'returned' %}
+                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">Returned</span>
+              {% else %}
+                <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-semibold">Borrowed</span>
+              {% endif %}
+            </td>
+            <td class="border p-3">
+              {% with loan.fine_set.first as fine %}
+                {% if fine %}
+                  <span class="text-red-600 font-semibold">₹{{ fine.amount }}</span>
+                  <br>
+                  {% if fine.paid %}
+                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Paid</span>
+                  {% else %}
+                    <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Unpaid</span>
+                  {% endif %}
+                {% else %}
+                  <span class="text-gray-500 text-sm">No Fine</span>
+                {% endif %}
+              {% endwith %}
+            </td>
+            <td class="border p-3">
+              {% if loan.status != 'returned' %}
+                <a href="{% url 'loan_return' loan.id %}" class="text-blue-600 hover:underline">Return</a>
+              {% else %}
+                <span class="text-gray-400 text-sm">-</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="9" class="text-center p-4 text-gray-500">No loan records found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</body>
+</html>

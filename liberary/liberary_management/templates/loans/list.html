@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loan List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-7xl mx-auto bg-white p-6 shadow rounded-lg">
+    <h1 class="text-2xl font-bold mb-4">📄 Borrowed Books (Loan Records)</h1>
+    <a href="{% url 'loan_create' %}" class="mb-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">+ New Borrow</a>
+
+    <table class="table-auto w-full border mt-4">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="p-2 border">Book</th>
+          <th class="p-2 border">Member</th>
+          <th class="p-2 border">Loan Date</th>
+          <th class="p-2 border">Due Date</th>
+          <th class="p-2 border">Return Date</th>
+          <th class="p-2 border">Status</th>
+          <th class="p-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for loan in loans %}
+        <tr class="hover:bg-gray-100">
+          <td class="p-2 border">{{ loan.book }}</td>
+          <td class="p-2 border">{{ loan.member }}</td>
+          <td class="p-2 border">{{ loan.loan_date }}</td>
+          <td class="p-2 border">{{ loan.due_date }}</td>
+          <td class="p-2 border">{{ loan.return_date|default:"-" }}</td>
+          <td class="p-2 border">{{ loan.status|title }}</td>
+          <td class="p-2 border">
+            {% if loan.status == 'borrowed' %}
+              <a href="{% url 'loan_return' loan.id %}" class="text-blue-600 hover:underline">Return</a>
+            {% else %}
+              —
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="7" class="text-center p-4">No loan records found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

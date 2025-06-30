@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-6xl mx-auto bg-white p-6 shadow rounded-lg">
+        <h1 class="text-2xl font-bold mb-4">📚 Book List</h1>
+        <a href="{% url 'book_create' %}" class="mb-4 inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">+ Add Book</a>
+
+        <table class="table-auto w-full border mt-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="p-2 border">Title</th>
+                    <th class="p-2 border">Category</th>
+                    <th class="p-2 border">Year</th>
+                    <th class="p-2 border">Available</th>
+                    <th class="p-2 border">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr class="hover:bg-gray-100">
+                    <td class="p-2 border">{{ book.title }}</td>
+                    <td class="p-2 border">{{ book.category }}</td>
+                    <td class="p-2 border">{{ book.publication_year }}</td>
+                    <td class="p-2 border">{{ book.copies_available }} / {{ book.copies_total }}</td>
+                    <td class="p-2 border">
+                        <a href="{% url 'book_update' book.id %}" class="text-blue-600 hover:underline mr-2">Edit</a>
+                        <a href="{% url 'book_delete' book.id %}" class="text-red-600 hover:underline">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5" class="text-center p-4">No books found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
