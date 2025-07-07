@@ -1,0 +1,13 @@
+<h1>BMI Calculator</h1>
+    <form method="post">
+        <label for="weight">Weight (kg):</label>
+        <input type="number" name="weight" id="weight" step="any" required />
+        <br>
+        <label for="height">Height (cm):</label>
+        <input type="number" name="height" id="height" step="any" required />
+        <br>
+        <button type="submit">Calculate</button>
+    </form>
+    {% if result is not none %}
+        <h2>Result: {{ result }}</h2>
+    {% endif %}

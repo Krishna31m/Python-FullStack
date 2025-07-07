@@ -1,0 +1,99 @@
+<h1>Area Calculator</h1>
+<form method="post">
+    <!-- Rectangle -->
+    <input type="number" name="length" placeholder="Length (m)">
+    <input type="number" name="width" placeholder="Width (m)">
+    <br><br>
+
+    <!-- Circle -->
+    <input type="number" name="radius" placeholder="Radius (m)">
+    <br><br>
+
+    <!-- Triangle -->
+    <input type="number" name="base" placeholder="Base (m)">
+    <input type="number" name="height" placeholder="Height (m)">
+    <br><br>
+
+    <button type="submit" name="shape" value="rectangle">Rectangle Area</button>
+    <button type="submit" name="shape" value="circle">Circle Area</button>
+    <button type="submit" name="shape" value="triangle">Triangle Area</button>
+</form>
+
+{% if result is not none %}
+    <h3>Result: {{ result }}</h3>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h1>Area Calculator</h1>
+<form method="post">
+    <label for="shape">Choose Shape:</label>
+    <select name="shape" id="shape" required onchange="showFields()">
+        <option value="">--Select--</option>
+        <option value="rectangle">Rectangle</option>
+        <option value="circle">Circle</option>
+        <option value="triangle">Triangle</option>
+    </select>
+    <br><br>
+
+    <div id="rectangleFields" style="display:none;">
+        <label for="length">Length (m):</label>
+        <input type="number" name="length" id="length" step="any" />
+        <br>
+        <label for="width">Width (m):</label>
+        <input type="number" name="width" id="width" step="any" />
+    </div>
+
+    <div id="circleFields" style="display:none;">
+        <label for="radius">Radius (m):</label>
+        <input type="number" name="radius" id="radius" step="any" />
+    </div>
+
+    <div id="triangleFields" style="display:none;">
+        <label for="base">Base (m):</label>
+        <input type="number" name="base" id="base" step="any" />
+        <br>
+        <label for="height">Height (m):</label>
+        <input type="number" name="height" id="height" step="any" />
+    </div>
+
+    <br>
+    <button type="submit">Calculate Area</button>
+</form>
+
+{% if result is not none %}
+    <h2>{{ result }}</h2>
+{% endif %}
+
+<script>
+function showFields() {
+    const shape = document.getElementById("shape").value;
+    document.getElementById("rectangleFields").style.display = shape === "rectangle" ? "block" : "none";
+    document.getElementById("circleFields").style.display = shape === "circle" ? "block" : "none";
+    document.getElementById("triangleFields").style.display = shape === "triangle" ? "block" : "none";
+}
+</script> -->

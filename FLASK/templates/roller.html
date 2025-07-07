@@ -1,0 +1,17 @@
+<h1>Roller Coaster Eligibility Check</h1>
+<form method="post">
+    <label for="weight">Weight (kg):</label>
+    <input type="number" name="weight" id="weight" step="any" required />
+    <br>
+    <label for="height">Height (cm):</label>
+    <input type="number" name="height" id="height" step="any" required />
+    <br>
+    <label for="age">Age (years):</label>
+    <input type="number" name="age" id="age" required />
+    <br>
+    <button type="submit">Check Eligibility</button>
+</form>
+
+{% if result is not none %}
+    <h2>{{ result }}</h2>
+{% endif %}
