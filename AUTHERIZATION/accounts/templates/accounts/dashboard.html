@@ -1,0 +1,16 @@
+<!-- <h2>Welcome, {{ role }}</h2>
+<p>This is your dashboard.</p>
+<a href="{% url 'logout' %}">Logout</a> -->
+
+<h2>Welcome, {{ role }}</h2>
+<p>This is your dashboard.</p>
+
+{% if role == "Manager" %}
+  <p>You are a Manager. You have full control.</p>
+{% elif role == "Owner" %}
+  <p>You are an Owner. You can manage content.</p>
+{% else %}
+  <p>You are a Customer. You can view content.</p>
+{% endif %}
+
+<a href="{% url 'logout' %}">Logout</a>
