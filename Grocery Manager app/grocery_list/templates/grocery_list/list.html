@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grocery List</title>
+</head>
+<body>
+    <h1>Grocery List</h1>
+    <table border="1">
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Unit</th>
+            <th>Price/Unit</th>
+            <th>Total Price</th>
+            <th>Purchased?</th>
+            <th>Purchase Date</th>
+            <th>Expiry Date</th>
+            <th>Store Name</th>
+            <th>Created By</th>
+            <th>Email</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.item_name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unit }}</td>
+            <td>{{ item.price_per_unit }}</td>
+            <td>{{ item.total_price }}</td>
+            <td>{{ item.is_purchased }}</td>
+            <td>{{ item.purchase_date }}</td>
+            <td>{{ item.expiry_date }}</td>
+            <td>{{ item.store_name }}</td>
+            <td>{{ item.created_by }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.get_category_display }}</td>
+            <td>
+                <a href="{% url 'grocery_update' item.pk %}">Edit</a> |
+                <a href="{% url 'grocery_delete' item.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="13">No Data Found</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'grocery_create' %}">Add New Grocery Item</a>
+</body>
+</html>
